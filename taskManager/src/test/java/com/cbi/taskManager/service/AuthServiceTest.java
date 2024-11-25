@@ -19,11 +19,11 @@ public class AuthServiceTest {
     @InjectMocks
     AuthService service;
 
-
     @Test
     public void createOneUserTest(){
         UserDTO request = new UserDTO("username","password");
         service.signIn(request);
         verify(userRepository).save(new User("username","password"));
     }
+
 }
