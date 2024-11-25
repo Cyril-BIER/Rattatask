@@ -11,4 +11,12 @@ class UserTestCase {
         assertEquals("username", user.getUsername());
         assertEquals("password", user.getPassword());
     }
+
+    @Test
+    public void compareUserTest(){
+        assertEquals(
+                new User("user","pass"),
+                new User("user", "pass")
+        );
+    }
 }
