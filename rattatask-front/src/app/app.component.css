@@ -1,0 +1,9 @@
+.connection{
+  display: flex;
+  justify-content: center;
+}
+
+.appLogo{
+  margin: 1rem;
+  height: 8rem;
+}
