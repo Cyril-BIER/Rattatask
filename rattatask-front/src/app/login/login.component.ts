@@ -4,11 +4,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [MatCardModule, MatInputModule, MatButtonModule, ReactiveFormsModule],
+  imports: [
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -18,7 +24,7 @@ export class LoginComponent {
     password: new FormControl(''),
   });
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit(): void {
     if (this.form.valid) {
@@ -26,6 +32,7 @@ export class LoginComponent {
       this.authService.login(email, password).subscribe((isAuthenticated) => {
         if (isAuthenticated) {
           console.log('Login successful');
+          this.router.navigate(['/projects']);
         } else {
           console.log('Login failed');
         }
