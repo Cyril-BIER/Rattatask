@@ -16,7 +16,7 @@ export class AuthService {
 
   login(email: string, password: string): Observable<boolean> {
     const credentials = {
-      username: email,
+      email: email,
       password: password,
     };
 
@@ -37,7 +37,7 @@ export class AuthService {
 
   signup(email: string, password: string) : Observable<boolean>{
     const credentials = {
-      username: email,
+      email: email,
       password: password,
     };
 

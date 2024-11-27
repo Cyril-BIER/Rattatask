@@ -16,19 +16,19 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private Long id;
     @Column(nullable = false, unique = true)
-    private String username;
+    private String email;
     @Column(nullable = false)
     private String password;
 
     public User(){super();}
 
-    public User(String username, String password) {
-        this.username = username;
+    public User(String email, String password) {
+        this.email = email;
         this.password = password;
     }
 
     public String getUsername() {
-        return this.username;
+        return this.email;
     }
 
     @Override
@@ -64,12 +64,12 @@ public class User implements UserDetails {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(username, user.username) && Objects.equals(password, user.password);
+        return Objects.equals(id, user.id) && Objects.equals(email, user.email) && Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password);
+        return Objects.hash(id, email, password);
     }
 
     public Long getId() {

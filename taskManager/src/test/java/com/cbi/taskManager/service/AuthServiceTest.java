@@ -39,28 +39,28 @@ public class AuthServiceTest {
 
     @Test
     public void createOneUserTest(){
-        RegisterUserDTO request = new RegisterUserDTO("username","password");
+        RegisterUserDTO request = new RegisterUserDTO("email","password");
         when(passwordEncoder.encode("password")).thenReturn("encodedPassword");
         service.signUp(request);
-        verify(userRepository).save(new User("username","encodedPassword"));
+        verify(userRepository).save(new User("email","encodedPassword"));
     }
 
     @Test
     public void loginTest(){
-        LoginUserDTO loginRequest = new LoginUserDTO("username", "password");
+        LoginUserDTO loginRequest = new LoginUserDTO("email", "password");
         LoginResponse expected = new LoginResponse(null,
-                "username",
+                "email",
                 "generatedToken",
                 3600000L);
 
-        User user = new User("username", "password");
-        when(userRepository.findByUsername("username")).thenReturn(Optional.of(user));
+        User user = new User("email", "password");
+        when(userRepository.findByEmail("email")).thenReturn(Optional.of(user));
         when(jwtService.generateToken(user)).thenReturn("generatedToken");
         when(jwtService.getExpirationTime()).thenReturn(3600000L);
         LoginResponse actual = service.login(loginRequest);
 
         verify(authenticationManager).authenticate(
-                new UsernamePasswordAuthenticationToken("username", "password")
+                new UsernamePasswordAuthenticationToken("email", "password")
         );
         assertEquals(expected,actual);
     }

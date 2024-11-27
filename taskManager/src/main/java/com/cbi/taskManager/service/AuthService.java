@@ -29,17 +29,17 @@ public class AuthService {
     @Transactional
     public User signUp(RegisterUserDTO request) {
         return userRepository.save(
-                new User(request.username(),
+                new User(request.email(),
                         passwordEncoder.encode(request.password()))
         );
     }
 
     public LoginResponse login(LoginUserDTO loginRequest) {
         authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.username(),
+                new UsernamePasswordAuthenticationToken(loginRequest.email(),
                         loginRequest.password())
         );
-        User user = userRepository.findByUsername(loginRequest.username())
+        User user = userRepository.findByEmail(loginRequest.email())
                 .orElseThrow();
 
         return new LoginResponse(user.getId(),
