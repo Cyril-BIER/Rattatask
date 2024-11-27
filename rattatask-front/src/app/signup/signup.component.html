@@ -2,7 +2,7 @@
 
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-card-header>
-      <mat-card-title>Connexion</mat-card-title>
+      <mat-card-title>Créer un compte</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <p>
@@ -15,13 +15,19 @@
           <input type="password" matInput placeholder="Mot de passe" formControlName="password">
         </mat-form-field>
       </p>
+      <p>
+        <mat-form-field>
+          <input type="password" matInput placeholder="Confirmer mot de passe" formControlName="confirmPassword">
+        </mat-form-field>
+      </p>
     </mat-card-content>
     <mat-card-footer>
       <div class="button">
-        <button type="submit" mat-button>Connexion</button>
+        <button type="submit" mat-button>Créer</button>
       </div>
     </mat-card-footer>
   </form>
 
 
 </mat-card>
+

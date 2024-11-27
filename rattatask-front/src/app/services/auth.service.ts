@@ -35,6 +35,21 @@ export class AuthService {
     );
   }
 
+  signup(email: string, password: string) : Observable<boolean>{
+    const credentials = {
+      username: email,
+      password: password,
+    };
+
+    return this.http.post<any>(`${ENV.apiUrl}/auth/signup`,credentials).pipe(
+      map(()=>{
+        return true;
+      }), catchError((error) => {
+        return of(false);
+      })
+    );
+  }
+
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');
   }
