@@ -6,6 +6,8 @@ import com.cbi.taskManager.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProjectService {
     @Autowired
@@ -13,5 +15,9 @@ public class ProjectService {
 
     public Project createProject(ProjectDTO projectDTO) {
         return projectRepository.save(new Project(projectDTO.name()));
+    }
+
+    public List<Project> getProjects(List<Long> ids) {
+        return projectRepository.findAllById(ids);
     }
 }
