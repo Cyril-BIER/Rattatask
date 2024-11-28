@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ENV } from '../../environments/env';
-import { catchError, map } from 'rxjs';
+import { catchError, map, Observable } from 'rxjs';
+import { Project } from '../interfaces/Project';
 
 @Injectable({
   providedIn: 'root',
@@ -17,9 +18,24 @@ export class ProjectService {
     });
   }
 
-  getProjects(){
+  getProjects() {
     return this.http
       .get<any>(`${ENV.apiUrl}/api/projects`, { headers: this.headers })
+      .pipe(
+        map((response) => {
+          return response;
+        }),
+        catchError((error) => {
+          return error;
+        })
+      );
+  }
+
+  postProject(name: string) {
+    const body = { name: name };
+
+    return this.http
+      .post<any>(`${ENV.apiUrl}/api/projects`, body, { headers: this.headers })
       .pipe(
         map((response) => {
           return response;
