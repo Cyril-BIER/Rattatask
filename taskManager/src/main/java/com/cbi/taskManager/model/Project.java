@@ -1,5 +1,7 @@
 package com.cbi.taskManager.model;
 
+import java.util.Objects;
+
 public class Project {
     private final String name;
 
@@ -9,5 +11,17 @@ public class Project {
 
     public String getName() {
         return this.name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Project project = (Project) o;
+        return Objects.equals(name, project.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(name);
     }
 }

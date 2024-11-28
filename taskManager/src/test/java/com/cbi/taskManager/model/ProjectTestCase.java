@@ -10,4 +10,12 @@ public class ProjectTestCase {
         Project project = new Project("Project 1");
         assertEquals("Project 1", project.getName());
     }
+
+    @Test
+    public void compareTest(){
+        Project project1 = new Project("My Project");
+        Project project2 = new Project("My Project");
+
+        assertEquals(project1, project2);
+    }
 }
