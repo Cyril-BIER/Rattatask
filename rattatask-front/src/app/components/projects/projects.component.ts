@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ProjectCardComponent } from '../project-card/project-card.component';
 import { Project } from '../../interfaces/Project';
 import { CommonModule } from '@angular/common';
+import { ProjectService } from '../../services/project.service';
 
 @Component({
   selector: 'app-projects',
@@ -11,8 +12,13 @@ import { CommonModule } from '@angular/common';
   styleUrl: './projects.component.css',
 })
 export class ProjectsComponent {
-  projects: Project[] = [
-    { id: 1, name: 'Mon Projet' },
-    { id: 2, name: 'Mon Projet2' },
-  ];
+  constructor(private projectService: ProjectService) {}
+
+  projects !: Project[];
+
+  ngOnInit(): void {
+    this.projectService.getProjects().subscribe((projects)=>{
+      this.projects = projects;
+    })
+  }
 }
