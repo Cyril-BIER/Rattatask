@@ -3,7 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { catchError, of } from 'rxjs';
 
 @Component({

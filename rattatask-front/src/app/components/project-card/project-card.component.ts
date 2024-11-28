@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { Project } from '../interfaces/Project';
+import { Project } from '../../interfaces/Project';
 
 @Component({
   selector: 'app-project-card',

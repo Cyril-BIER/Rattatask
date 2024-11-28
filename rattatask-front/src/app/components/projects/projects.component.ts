@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ProjectCardComponent } from '../project-card/project-card.component';
-import { Project } from '../interfaces/Project';
+import { Project } from '../../interfaces/Project';
 import { CommonModule } from '@angular/common';
 
 @Component({
