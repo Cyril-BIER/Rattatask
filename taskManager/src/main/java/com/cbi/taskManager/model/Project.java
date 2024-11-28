@@ -14,6 +14,8 @@ public class Project {
     @Column(nullable = false)
     private String name;
 
+    public Project(){}
+
     public Project(String name) {
         this.name = name;
     }
