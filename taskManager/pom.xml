@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.cbi</groupId>
-	<artifactId>taskManager</artifactId>
+	<artifactId>RattataskAPI</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>taskManager</name>
 	<description>Task Manger POC</description>
