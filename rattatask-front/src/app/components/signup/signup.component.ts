@@ -27,6 +27,8 @@ export class SignupComponent {
       const { email, password, confirmPassword } = this.form.value;
       if(password == confirmPassword){
         this.authService.signup(email, password).subscribe(() => {
+          alert("Compte créé");
+          location.reload();
           catchError((error) => {
             console.log(error);
             return of(false);

@@ -3,11 +3,12 @@ import { ProjectCardComponent } from '../project-card/project-card.component';
 import { Project } from '../../interfaces/Project';
 import { CommonModule } from '@angular/common';
 import { ProjectService } from '../../services/project.service';
+import { CreateProjectComponent } from '../create-project/create-project.component';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, ProjectCardComponent],
+  imports: [CommonModule, ProjectCardComponent, CreateProjectComponent],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.css',
 })

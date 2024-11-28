@@ -3,12 +3,11 @@
 </header>
 <main class="main">
   <div class="content">
-    <div class="connection">
+    <div class="connection" *ngIf="!isAuthenticated">
       <app-login></app-login>
       <app-signup></app-signup>
     </div>
-
-    <router-outlet />
+    <router-outlet *ngIf="isAuthenticated" />
   </div>
 </main>
 

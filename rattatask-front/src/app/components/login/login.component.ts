@@ -31,10 +31,9 @@ export class LoginComponent {
       const { email, password } = this.form.value;
       this.authService.login(email, password).subscribe((isAuthenticated) => {
         if (isAuthenticated) {
-          console.log('Login successful');
-          //this.router.navigate(['/projects']);
+          location.reload();
         } else {
-          console.log('Login failed');
+          alert("Authentication failed")
         }
       });
     }

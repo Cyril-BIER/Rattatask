@@ -25,6 +25,7 @@ export class AuthService {
         localStorage.setItem('user', response.username);
         localStorage.setItem('user_id', response.id);
         localStorage.setItem('token', response.generatedToken);
+        localStorage.setItem('tokenExpiresAt', Date.now() + response.expiresIn);
         this.loggedIn.next(true);
         return true;
       }),
