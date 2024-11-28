@@ -16,6 +16,7 @@ export class ProjectsComponent {
   constructor(private projectService: ProjectService) {}
 
   projects !: Project[];
+  username = localStorage.getItem('user');
 
   ngOnInit(): void {
     this.projectService.getProjects().subscribe((projects)=>{
