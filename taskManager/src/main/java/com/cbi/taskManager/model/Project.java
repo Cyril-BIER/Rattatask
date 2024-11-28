@@ -13,7 +13,6 @@ public class Project {
 
     @Column(nullable = false)
     private String name;
-    private Object o;
 
     public Project(String name) {
         this.name = name;
@@ -25,14 +24,13 @@ public class Project {
 
     @Override
     public boolean equals(Object o) {
-        this.o = o;
         if (o == null || getClass() != o.getClass()) return false;
         Project project = (Project) o;
-        return Objects.equals(name, project.name);
+        return Objects.equals(id, project.id) && Objects.equals(name, project.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(name);
+        return Objects.hash(id, name);
     }
 }
