@@ -32,8 +32,8 @@ public class ProjectServiceTestCase {
 
     @Test
     public void getZeroProjectTest(){
-        when(projectRepository.findAllById(List.of())).thenReturn(List.of());
-        List<Project> actual = projectService.getProjects(List.of());
+        when(projectRepository.findAllById(List.of(1L))).thenReturn(List.of());
+        List<Project> actual = projectService.getProjects(List.of(1L));
         assertEquals(List.of(),actual);
     }
 
@@ -51,8 +51,14 @@ public class ProjectServiceTestCase {
     public void getManyProjectTest(){
         Project project1 =new Project("Project 1");
         Project project2 =new Project("Project 2");
-        when(projectRepository.findAllById(List.of())).thenReturn(List.of(project1, project2));
-        List<Project> actual = projectService.getProjects(List.of());
+        when(projectRepository.findAllById(List.of(1L,2L))).thenReturn(List.of(project1, project2));
+        List<Project> actual = projectService.getProjects(List.of(1L,2L));
         assertEquals(List.of(project1, project2),actual);
+    }
+
+    @Test
+    public void getAllProjectsTest(){
+        projectService.getProjects(List.of());
+        verify(projectRepository).findAll();
     }
 }
