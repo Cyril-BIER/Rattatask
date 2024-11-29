@@ -1,7 +1,9 @@
 package com.cbi.taskManager.controller;
 
+import com.cbi.taskManager.dto.CreateTaskDTO;
 import com.cbi.taskManager.dto.ProjectDTO;
 import com.cbi.taskManager.model.Project;
+import com.cbi.taskManager.model.Task;
 import com.cbi.taskManager.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,5 +25,13 @@ public class ProjectController {
     @GetMapping
     public ResponseEntity<List<Project>> getProjects(@RequestParam(name = "id", defaultValue ="") List<Long> ids){
         return ResponseEntity.ok(projectService.getProjects(ids));
+    }
+
+    @PostMapping("/tasks")
+    public ResponseEntity<List<Task>> addTasks(
+            @RequestParam(name = "projectID") Long projectId,
+            @RequestBody List<CreateTaskDTO> dtos
+    ){
+        return ResponseEntity.ok(projectService.addTasks(projectId,dtos));
     }
 }

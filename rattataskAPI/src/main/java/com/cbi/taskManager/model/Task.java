@@ -24,10 +24,11 @@ public class Task {
     @ManyToMany
     private List<User> users;
 
+    public Task(){}
+
     public Task(String name, String description, List<User> users) {
         this.name = name;
         this.description = description;
-        this.status = status;
         this.users = users;
     }
 

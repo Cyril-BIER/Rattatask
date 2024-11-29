@@ -16,7 +16,7 @@ public class Project {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Task> tasks = new ArrayList<>();
 
     public void addTasks(List<Task> tasks) {
