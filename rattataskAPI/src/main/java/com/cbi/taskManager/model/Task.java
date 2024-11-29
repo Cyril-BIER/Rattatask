@@ -1,0 +1,49 @@
+package com.cbi.taskManager.model;
+
+import com.cbi.taskManager.enums.TaskStatus;
+import jakarta.persistence.*;
+
+import java.util.Objects;
+
+@Entity
+public class Task {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false)
+    private Long id;
+
+    @Column(nullable = false)
+    private String name ;
+    private String description;
+    private TaskStatus status = TaskStatus.TODO;
+
+    public Task(String name, String description, TaskStatus status) {
+        this.name = name;
+        this.description = description;
+        this.status = status;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public TaskStatus getStatus() {
+        return this.status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return Objects.equals(id, task.id) && Objects.equals(name, task.name) && Objects.equals(description, task.description) && status == task.status;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, description, status);
+    }
+}
