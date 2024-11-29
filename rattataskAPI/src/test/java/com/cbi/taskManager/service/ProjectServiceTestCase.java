@@ -1,8 +1,12 @@
 package com.cbi.taskManager.service;
 
 import com.cbi.taskManager.dto.ProjectDTO;
+import com.cbi.taskManager.dto.CreateTaskDTO;
 import com.cbi.taskManager.model.Project;
+import com.cbi.taskManager.model.Task;
+import com.cbi.taskManager.model.User;
 import com.cbi.taskManager.repository.ProjectRepository;
+import com.cbi.taskManager.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -10,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
@@ -19,6 +24,9 @@ import static org.mockito.Mockito.when;
 public class ProjectServiceTestCase {
     @Mock
     ProjectRepository projectRepository;
+
+    @Mock
+    UserRepository userRepository;
 
     @InjectMocks
     ProjectService projectService;
@@ -60,5 +68,21 @@ public class ProjectServiceTestCase {
     public void getAllProjectsTest(){
         projectService.getProjects(List.of());
         verify(projectRepository).findAll();
+    }
+
+    @Test
+    public void add1TaskTest(){
+        List<User> users = List.of( new User("mail", "password"));
+        List<Task> tasks = List.of(
+                new Task("Nom tâche", "Description", users)
+        );
+        Project expected = new Project("Project");
+        expected.addTasks(tasks);
+        List<CreateTaskDTO> dtos =List.of( new CreateTaskDTO("Nom tâche","Description",List.of(1L)));
+
+        when(userRepository.findAllById(List.of(1L))).thenReturn(users);
+        when(projectRepository.findById(1L)).thenReturn(Optional.of(new Project("Project")));
+        projectService.addTasks(1L,dtos);
+        verify(projectRepository).save(expected);
     }
 }
