@@ -27,6 +27,12 @@ public class User implements UserDetails {
         this.password = password;
     }
 
+    public User(Long id, String mail, String password) {
+        this.id = id;
+        this.email = mail;
+        this.password = password;
+    }
+
     public String getUsername() {
         return this.email;
     }

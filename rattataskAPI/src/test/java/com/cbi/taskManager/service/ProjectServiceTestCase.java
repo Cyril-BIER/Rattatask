@@ -15,6 +15,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
@@ -72,7 +73,7 @@ public class ProjectServiceTestCase {
 
     @Test
     public void add1TaskTest(){
-        List<User> users = List.of( new User("mail", "password"));
+        List<User> users = List.of( new User(1L, "mail", "password"));
         List<Task> tasks = List.of(
                 new Task("Nom tâche", "Description", users)
         );
@@ -80,7 +81,7 @@ public class ProjectServiceTestCase {
         expected.addTasks(tasks);
         List<CreateTaskDTO> dtos =List.of( new CreateTaskDTO("Nom tâche","Description",List.of(1L)));
 
-        when(userRepository.findAllById(List.of(1L))).thenReturn(users);
+        when(userRepository.findAllById(Set.of(1L))).thenReturn(users);
         when(projectRepository.findById(1L)).thenReturn(Optional.of(new Project("Project")));
         projectService.addTasks(1L,dtos);
         verify(projectRepository).save(expected);

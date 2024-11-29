@@ -8,11 +8,13 @@ import com.cbi.taskManager.model.User;
 import com.cbi.taskManager.repository.ProjectRepository;
 import com.cbi.taskManager.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class ProjectService {
@@ -30,13 +32,21 @@ public class ProjectService {
         return projectRepository.findAllById(ids);
     }
 
+    @Transactional
     public List<Task> addTasks(Long projectID, List<CreateTaskDTO> dtos) {
-        List<Task> tasks = new ArrayList<>();
-        for(CreateTaskDTO dto:dtos){
-            List<User> users = userRepository.findAllById(dto.usersID());
-            Task task = new Task(dto.name(),dto.description(), users);
-            tasks.add(task);
-        }
+        Set<Long> usersID = dtos.stream()
+                .map(CreateTaskDTO::usersID)
+                .flatMap(List::stream)
+                .collect(Collectors.toSet());
+        List<User> allUsers = userRepository.findAllById(usersID);
+
+        List<Task> tasks = dtos.stream()
+                .map(dto->
+                        new Task(dto.name(), dto.description(),
+                            allUsers.stream()
+                                    .filter(user -> dto.usersID().contains(user.getId()))
+                                    .toList()))
+                .toList();
         Project project = projectRepository.findById(projectID).orElseThrow(EntityNotFoundException::new);
         project.addTasks(tasks);
         projectRepository.save(project);
