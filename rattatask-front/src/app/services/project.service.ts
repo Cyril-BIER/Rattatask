@@ -18,18 +18,40 @@ export class ProjectService {
     });
   }
 
-  getProjects() {
-    return this.http
-      .get<any>(`${ENV.apiUrl}/api/projects`, { headers: this.headers })
-      .pipe(
-        map((response) => {
-          return response;
-        }),
-        catchError((error) => {
-          return error;
-        })
-      );
+  getProjects(ids? :number[]) {
+    if(ids== undefined){
+
+      return this.http
+        .get<any>(`${ENV.apiUrl}/api/projects`, { headers: this.headers })
+        .pipe(
+          map((response) => {
+            return response;
+          }),
+          catchError((error) => {
+            return error;
+          })
+        );
+    }else{
+      let url : string = `${ENV.apiUrl}/api/projects?`;
+      ids.forEach((id)=>{
+        url += `id=${id}&`
+      })
+
+      return this.http
+        .get<any>(url, { headers: this.headers })
+        .pipe(
+          map((response) => {
+            return response;
+          }),
+          catchError((error) => {
+            return error;
+          })
+        );
+    }
+
+
   }
+
 
   postProject(name: string) {
     const body = { name: name };

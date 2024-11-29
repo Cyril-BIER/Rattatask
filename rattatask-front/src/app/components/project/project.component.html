@@ -1,0 +1,4 @@
+<div *ngIf="project">
+  <h1>{{project.name}}</h1>
+  <app-task *ngFor="let task of project.tasks" [task]="task"></app-task>
+</div>

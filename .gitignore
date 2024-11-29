@@ -1,2 +1,4 @@
 taskManager/data/taskManager.mv.db
 taskManager/data/taskManager.trace.db
+rattataskAPI/data/rattatask.mv.db
+rattataskAPI/data/rattatask.trace.db
