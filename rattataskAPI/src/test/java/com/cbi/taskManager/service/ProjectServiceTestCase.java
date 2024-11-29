@@ -86,4 +86,31 @@ public class ProjectServiceTestCase {
         projectService.addTasks(1L,dtos);
         verify(projectRepository).save(expected);
     }
+
+    @Test
+    public void addManyTasksTest(){
+        User user1 = new User(1L, "mail", "password");
+        User user2 = new User(2L, "mail2", "password");
+        User user3 = new User(3L, "mail3", "password");
+
+        List<Task> tasks = List.of(
+                new Task("Tâche1", "Description", List.of(user1,user2,user3)),
+                new Task("Tâche2", "Description", List.of(user2)),
+                new Task("Tâche3", "Description", List.of(user1,user3))
+        );
+        Project expected = new Project("Project");
+        expected.addTasks(tasks);
+
+        List<CreateTaskDTO> dtos =List.of(
+                new CreateTaskDTO("Tâche1","Description",List.of(1L,2L,3L)),
+                new CreateTaskDTO("Tâche2","Description",List.of(2L)),
+                new CreateTaskDTO("Tâche3","Description",List.of(1L,3L))
+
+        );
+
+        when(userRepository.findAllById(Set.of(1L,2L,3L))).thenReturn(List.of(user1,user2,user3));
+        when(projectRepository.findById(1L)).thenReturn(Optional.of(new Project("Project")));
+        projectService.addTasks(1L,dtos);
+        verify(projectRepository).save(expected);
+    }
 }
