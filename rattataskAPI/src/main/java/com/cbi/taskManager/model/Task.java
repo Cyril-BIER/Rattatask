@@ -15,8 +15,12 @@ public class Task {
 
     @Column(nullable = false)
     private String name ;
+
     private String description;
+
+    @Column(nullable = false)
     private TaskStatus status = TaskStatus.TODO;
+
     @ManyToMany
     private List<User> users;
 
