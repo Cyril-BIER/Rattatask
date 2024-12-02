@@ -1,0 +1,25 @@
+<div class="task-creator-container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h1>Créer tâche</h1>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Nom</mat-label>
+      <input matInput placeholder="Enter task name" formControlName="nom">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Description</mat-label>
+      <input matInput placeholder="Enter task description" formControlName="description">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Personne affectée</mat-label>
+      <mat-select formControlName="userIds" multiple>
+        <mat-option *ngFor="let user of users" [value]="user.id">
+          {{ user.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Créer tâche</button>
+  </form>
+</div>

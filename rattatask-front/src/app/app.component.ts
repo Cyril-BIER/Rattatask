@@ -19,7 +19,6 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent {
   title = 'Rattatask';
-  id = 1;
 
   private isTokenExpired(): boolean {
     const tokenExpiresAt = localStorage.getItem('tokenExpiresAt');
