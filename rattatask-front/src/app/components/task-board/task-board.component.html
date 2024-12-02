@@ -1,0 +1,9 @@
+<h1>{{project.name}}</h1>
+<div class="board-container">
+  <div class="board-column" *ngFor="let column of ['TODO', 'ONGOING', 'DONE']">
+    <h2>{{ column }}</h2>
+    <div class="tasks">
+      <app-task *ngFor="let task of tasks[column]" [task]="task"></app-task>
+    </div>
+  </div>
+</div>
