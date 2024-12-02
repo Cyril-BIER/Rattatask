@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { ProjectService } from '../../services/project.service';
 import { Project } from '../../interfaces/Project';
 import { Task } from '../../interfaces/Task';
 import { CommonModule } from '@angular/common';
 import { TaskComponent } from '../task/task.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-task-board',
@@ -13,6 +14,7 @@ import { TaskComponent } from '../task/task.component';
   styleUrl: './task-board.component.css',
 })
 export class TaskBoardComponent implements OnInit {
+  private route = inject(ActivatedRoute)
   project !: Project;
   tasks: { [key: string]: any[] } = {
     TODO: [],
@@ -25,6 +27,8 @@ export class TaskBoardComponent implements OnInit {
   @Input() projectID!: number;
 
   ngOnInit(): void {
+    this.projectID = this.route.snapshot.params['id'];
+
     this.projectService.getProjects([this.projectID]).subscribe({
       next: (response) => {
         this.project = response[0];

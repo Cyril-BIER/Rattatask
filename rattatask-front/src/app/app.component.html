@@ -1,5 +1,5 @@
 <header>
-  <img class="appLogo" src="assets/Rattatask_logo.png" alt="">
+  <img [routerLink]="['/']" class="appLogo" src="assets/Rattatask_logo.png" alt="">
 </header>
 <main class="main">
   <div class="content">
@@ -8,6 +8,7 @@
       <app-signup></app-signup>
     </div>
     <router-outlet *ngIf="isAuthenticated" />
+
   </div>
 </main>
 
