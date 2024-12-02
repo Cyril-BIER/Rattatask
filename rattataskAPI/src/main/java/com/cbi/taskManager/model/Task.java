@@ -24,9 +24,19 @@ public class Task {
     @ManyToMany
     private List<User> users;
 
+    @ManyToOne
+    private Project project;
+
     public Task(){}
 
     public Task(String name, String description, List<User> users) {
+        this.name = name;
+        this.description = description;
+        this.users = users;
+    }
+
+    public Task(Long id, String name, String description, List<User> users) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.users = users;
@@ -60,5 +70,13 @@ public class Task {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, description, status, users);
+    }
+
+    public Project getProject() {
+        return this.project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }

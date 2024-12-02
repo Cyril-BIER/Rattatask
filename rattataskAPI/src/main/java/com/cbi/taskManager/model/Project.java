@@ -16,10 +16,11 @@ public class Project {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Task> tasks = new ArrayList<>();
 
     public void addTasks(List<Task> tasks) {
+        tasks.forEach(task -> task.setProject(this));
         this.tasks.addAll(tasks);
     }
 
@@ -51,5 +52,9 @@ public class Project {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, tasks);
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 }
