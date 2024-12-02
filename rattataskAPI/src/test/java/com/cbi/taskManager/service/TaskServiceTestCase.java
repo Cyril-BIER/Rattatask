@@ -24,4 +24,10 @@ public class TaskServiceTestCase {
         taskService.delete(List.of(1L));
         verify(taskRepository).deleteAllById(List.of(1L));
     }
+
+    @Test
+    public void deleteManyTasks(){
+        taskService.delete(List.of(1L, 5L,101L));
+        verify(taskRepository).deleteAllById(List.of(1L, 5L,101L));
+    }
 }
