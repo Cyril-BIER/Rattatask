@@ -1,15 +1,16 @@
 .task-creator-container {
-  max-width: 400px;
-  margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background: #fff;
+  padding: 1rem;
 }
 
 .full-width {
   width: 100%;
   margin-bottom: 16px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
 }
 
 h1{

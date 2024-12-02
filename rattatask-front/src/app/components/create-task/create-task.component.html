@@ -1,6 +1,6 @@
 <div class="task-creator-container">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <h1>Créer tâche</h1>
+    <h1>Créer une tâche</h1>
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Nom</mat-label>
       <input matInput placeholder="Enter task name" formControlName="nom">
@@ -21,5 +21,6 @@
     </mat-form-field>
 
     <button mat-raised-button color="primary" type="submit">Créer tâche</button>
+    <button mat-button (click)="closeDialog()" type="submit">Cancel</button>
   </form>
 </div>

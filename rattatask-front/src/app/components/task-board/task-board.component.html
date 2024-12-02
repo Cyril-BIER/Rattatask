@@ -1,4 +1,7 @@
-<h1>{{project.name}}</h1>
+<div class="toolBar">
+  <h1>{{project.name}}</h1>
+  <button mat-raised-button color="primary" (click)="openTaskCreatorDialog()">Créer une tâche</button>
+</div>
 <div class="board-container">
   <div class="board-column" *ngFor="let column of ['TODO', 'ONGOING', 'DONE']">
     <h2>{{ column }}</h2>

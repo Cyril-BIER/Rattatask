@@ -23,3 +23,10 @@ h1{
   display: flex;
   justify-content: center;
 }
+
+.toolBar{
+  display: flex;
+  justify-content: space-between;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}

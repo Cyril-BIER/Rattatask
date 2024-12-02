@@ -5,26 +5,43 @@ import { Task } from '../../interfaces/Task';
 import { CommonModule } from '@angular/common';
 import { TaskComponent } from '../task/task.component';
 import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateTaskComponent } from '../create-task/create-task.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-task-board',
   standalone: true,
-  imports: [CommonModule, TaskComponent],
+  imports: [CommonModule, TaskComponent, MatButtonModule],
   templateUrl: './task-board.component.html',
   styleUrl: './task-board.component.css',
 })
 export class TaskBoardComponent implements OnInit {
-  private route = inject(ActivatedRoute)
-  project !: Project;
+  private route = inject(ActivatedRoute);
+  project!: Project;
   tasks: { [key: string]: any[] } = {
     TODO: [],
     ONGOING: [],
     DONE: [],
   };
 
-  constructor(private projectService: ProjectService) {}
+  constructor(
+    private projectService: ProjectService,
+    public dialog: MatDialog
+  ) {}
 
   @Input() projectID!: number;
+
+  openTaskCreatorDialog(): void {
+    const dialogRef = this.dialog.open(CreateTaskComponent, {
+      width: 'fit-content',
+      data : {  projectID : this.projectID}
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('Dialog closed. Result:', result);
+    });
+  }
 
   ngOnInit(): void {
     this.projectID = this.route.snapshot.params['id'];
