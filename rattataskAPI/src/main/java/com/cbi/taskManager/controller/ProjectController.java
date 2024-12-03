@@ -6,6 +6,7 @@ import com.cbi.taskManager.model.Project;
 import com.cbi.taskManager.model.Task;
 import com.cbi.taskManager.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,18 @@ public class ProjectController {
     @GetMapping
     public ResponseEntity<List<Project>> getProjects(@RequestParam(name = "id", defaultValue ="") List<Long> ids){
         return ResponseEntity.ok(projectService.getProjects(ids));
+    }
+
+    @DeleteMapping
+    public ResponseEntity<?> deleteProjects(@RequestParam(name = "id") List<Long> ids){
+        try{
+            projectService.delete(ids);
+            return ResponseEntity.ok(HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(e.getMessage());
+        }
     }
 
     @PostMapping("/tasks")
