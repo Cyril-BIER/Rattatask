@@ -75,15 +75,19 @@ public class Task {
         return Objects.hash(id, name, description, status, users);
     }
 
-    public Project getProject() {
-        return this.project;
-    }
-
     public void setProject(Project project) {
         this.project = project;
     }
 
     public void setStatus(TaskStatus taskStatus) {
         this.status = taskStatus;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }
