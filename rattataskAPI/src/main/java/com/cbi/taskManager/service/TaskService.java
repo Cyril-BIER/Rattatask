@@ -4,6 +4,7 @@ import com.cbi.taskManager.model.Project;
 import com.cbi.taskManager.model.Task;
 import com.cbi.taskManager.repository.ProjectRepository;
 import com.cbi.taskManager.repository.TaskRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,7 @@ public class TaskService {
     @Autowired
     ProjectRepository projectRepository;
 
+    @Transactional
     public void delete(List<Long> ids) {
         List<Task> tasks = taskRepository.findAllById(ids);
         Set<Project> projects = tasks.stream()

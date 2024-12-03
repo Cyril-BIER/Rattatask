@@ -25,6 +25,7 @@ public class Task {
     private List<User> users;
 
     @ManyToOne
+    @JoinColumn(name="project_id", nullable=false)
     private Project project;
 
     public Task(){}

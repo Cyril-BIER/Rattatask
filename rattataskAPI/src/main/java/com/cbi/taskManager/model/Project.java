@@ -16,7 +16,7 @@ public class Project {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "project")
     private List<Task> tasks = new ArrayList<>();
 
     public void addTasks(List<Task> tasks) {
