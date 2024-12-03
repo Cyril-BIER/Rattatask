@@ -1,6 +1,7 @@
 package com.cbi.taskManager.model;
 
 import com.cbi.taskManager.enums.TaskStatus;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class Task {
 
     @ManyToOne
     @JoinColumn(name="project_id", nullable=false)
+    @JsonIgnore
     private Project project;
 
     public Task(){}
