@@ -53,7 +53,8 @@ public class ProjectService {
         return tasks;
     }
 
+    @Transactional
     public void delete(List<Long> ids) {
-        return ;
+        projectRepository.deleteAllById(ids);
     }
 }
