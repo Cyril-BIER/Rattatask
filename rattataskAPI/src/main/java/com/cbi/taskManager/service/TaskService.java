@@ -10,6 +10,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +27,7 @@ public class TaskService {
         taskRepository.deleteAllById(ids);
     }
 
+    @Transactional
     public List<Task> updateTasks(List<UpdateTaskDTO> dtos) {
         List<Task> tasks = taskRepository.findAllById(
                 dtos.stream()
@@ -50,9 +52,10 @@ public class TaskService {
                     task.setDescription(dto.description());
                     task.setStatus(dto.status());
                     task.setUsers(
-                            users.stream()
+                            new ArrayList<>(users.stream()
                                     .filter(u -> dto.userIds().contains(u.getId()))
                                     .toList()
+                            )
                     );
 
                 })
