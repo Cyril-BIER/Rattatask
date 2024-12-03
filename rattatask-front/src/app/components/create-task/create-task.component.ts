@@ -1,7 +1,6 @@
 import { Component, Inject, inject, Input } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
@@ -33,6 +32,8 @@ import { CommonModule } from '@angular/common';
 })
 export class CreateTaskComponent {
   projectId!: number;
+  form: FormGroup;
+
   users: { id: number; name: string }[] = [
     { id: 1, name: 'Alice' },
     { id: 2, name: 'Bob' },
@@ -52,7 +53,6 @@ export class CreateTaskComponent {
       userIds: [[]],
     });
   }
-  form: FormGroup;
 
   onSubmit(): void {
     const task = {
@@ -67,7 +67,6 @@ export class CreateTaskComponent {
         });
       });
       location.reload();
-
     }
   }
 

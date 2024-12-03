@@ -3,6 +3,8 @@ import { MatCardModule } from '@angular/material/card';
 import { Task } from '../../interfaces/Task';
 import { MatButtonModule } from '@angular/material/button';
 import { TasksService } from '../../services/tasks.service';
+import { MatDialog } from '@angular/material/dialog';
+import { UpdateTaskComponent } from '../update-task/update-task.component';
 
 @Component({
   selector: 'app-task',
@@ -12,7 +14,15 @@ import { TasksService } from '../../services/tasks.service';
   styleUrl: './task.component.css',
 })
 export class TaskComponent {
-  constructor(private taskService: TasksService) {}
+@Input() task!: Task;
+
+openUpdateTaskDialog() {
+  const dialogRef = this.dialog.open(UpdateTaskComponent,{
+    width: 'fit-content',
+    data : this.task
+  })
+}
+  constructor(private taskService: TasksService, public dialog : MatDialog) {}
 
   deleteTask() {
     this.taskService.deleteTask([this.task.id]).subscribe({
@@ -25,5 +35,5 @@ export class TaskComponent {
       }
     })
   }
-  @Input() task!: Task;
+
 }

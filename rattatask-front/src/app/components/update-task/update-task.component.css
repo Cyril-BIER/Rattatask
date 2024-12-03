@@ -1,0 +1,19 @@
+.update-task-container {
+  padding: 1rem;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+}
