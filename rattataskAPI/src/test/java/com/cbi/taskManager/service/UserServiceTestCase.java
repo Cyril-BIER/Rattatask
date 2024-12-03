@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -46,5 +47,26 @@ public class UserServiceTestCase {
 
         ));
         assertEquals(expected, userService.getUsers(List.of(1L, 3L, 5L)));
+    }
+
+    @Test
+    public void getAllUsersTest(){
+        List<UserDTO> expected =List.of(
+                new UserDTO(1L, "bob@mail.com"),
+                new UserDTO(2L, "alice@mail.com"),
+                new UserDTO(3L, "eve@mail.com")
+
+        );
+        when(userRepository.findAll()).thenReturn(List.of(
+                new User(1L, "bob@mail.com", "password"),
+                new User(2L, "alice@mail.com", "password"),
+                new User(3L, "eve@mail.com", "password")
+
+        ));
+        List<UserDTO> actual = userService.getUsers(List.of());
+        verify(userRepository).findAll();
+
+        assertEquals(expected, actual);
+
     }
 }

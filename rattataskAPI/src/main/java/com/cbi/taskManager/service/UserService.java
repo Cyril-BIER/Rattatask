@@ -13,6 +13,9 @@ public class UserService {
     UserRepository userRepository;
 
     public List<UserDTO> getUsers(List<Long> ids) {
+        if(ids.isEmpty()) return userRepository.findAll().stream()
+                .map(u->new UserDTO(u.getId(),u.getUsername()))
+                .toList();
         return userRepository.findAllById(ids).stream()
                 .map(u->new UserDTO(u.getId(),u.getUsername()))
                 .toList();
