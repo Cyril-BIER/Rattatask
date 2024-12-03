@@ -113,4 +113,10 @@ public class ProjectServiceTestCase {
         projectService.addTasks(1L,dtos);
         verify(projectRepository).save(expected);
     }
+
+    @Test
+    public void delete1Project(){
+        projectService.delete(List.of(1L));
+        verify(projectRepository).deleteAllById(List.of(1L));
+    }
 }

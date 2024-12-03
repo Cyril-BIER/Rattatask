@@ -52,4 +52,8 @@ public class ProjectService {
         projectRepository.save(project);
         return tasks;
     }
+
+    public void delete(List<Long> ids) {
+        return ;
+    }
 }
