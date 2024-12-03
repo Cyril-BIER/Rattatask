@@ -10,15 +10,16 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TaskService {
     @Autowired
     TaskRepository taskRepository;
+
     @Autowired
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
     @Transactional
     public void delete(List<Long> ids) {
@@ -32,18 +33,31 @@ public class TaskService {
                         .boxed()
                         .toList()
         );
-        List<Task> updatedTasks = new ArrayList<>();
-        for(Task task:tasks){
-            UpdateTaskDTO dto = dtos.stream()
-                    .filter(d-> d.id().equals(task.getId()))
-                    .findFirst()
-                    .orElseThrow(EntityNotFoundException::new);
-            task.setDescription(dto.description());
-            task.setStatus(dto.status());
-            List<User> users = userRepository.findAllById(dto.userIds());
-            task.setUsers(users);
-            updatedTasks.add(task);
-        }
+
+        List<User> users = userRepository.findAllById(
+                dtos.stream()
+                    .flatMap(d-> d.userIds().stream())
+                    .collect(Collectors.toSet())
+        );
+
+        List<Task> updatedTasks = tasks.stream()
+                .peek(task -> {
+                    UpdateTaskDTO dto = dtos.stream()
+                            .filter(d -> d.id().equals(task.getId()))
+                            .findFirst()
+                            .orElseThrow(EntityNotFoundException::new);
+
+                    task.setDescription(dto.description());
+                    task.setStatus(dto.status());
+                    task.setUsers(
+                            users.stream()
+                                    .filter(u -> dto.userIds().contains(u.getId()))
+                                    .toList()
+                    );
+
+                })
+                .toList();
+
         return taskRepository.saveAll(updatedTasks);
     }
 }

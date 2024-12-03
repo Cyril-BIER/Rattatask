@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
+import java.util.Set;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -48,7 +49,7 @@ public class TaskServiceTestCase {
         expected.setStatus(TaskStatus.ONGOING);
 
         when(taskRepository.findAllById(List.of(1L))).thenReturn(List.of(orginal));
-        when(userRepository.findAllById(List.of())).thenReturn(List.of());
+        when(userRepository.findAllById(Set.of())).thenReturn(List.of());
         taskService.updateTasks(List.of(dto));
         verify(taskRepository).saveAll(List.of(expected));
     }
