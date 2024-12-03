@@ -54,4 +54,27 @@ public class TaskServiceTestCase {
         verify(taskRepository).saveAll(List.of(expected));
     }
 
+    @Test
+    public void updateManyTasks(){
+        List<UpdateTaskDTO> dtos = List.of(
+                new UpdateTaskDTO(1L,"Nouvelle description de tâche 1", TaskStatus.ONGOING, List.of()),
+                new UpdateTaskDTO(2L,"Nouvelle description de tâche 2", TaskStatus.DONE, List.of())
+        );
+
+        List<Task> originals = List.of(
+                new Task(1L, "Nom tâche 1", "Ancienne description 1",List.of()),
+                new Task(2L, "Nom tâche 2", "Ancienne description 2",List.of())
+        );
+        Task expected1 = new Task(1L, "Nom tâche 1", "Nouvelle description de tâche 1",List.of());
+        expected1.setStatus(TaskStatus.ONGOING);
+        Task expected2 = new Task(2L, "Nom tâche 2", "Nouvelle description de tâche 2",List.of());
+        expected2.setStatus(TaskStatus.DONE);
+
+        when(taskRepository.findAllById(List.of(1L, 2L))).thenReturn(originals);
+        when(userRepository.findAllById(Set.of())).thenReturn(List.of());
+
+        taskService.updateTasks(dtos);
+        verify(taskRepository).saveAll(List.of(expected1, expected2));
+    }
+
 }
