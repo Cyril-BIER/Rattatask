@@ -115,8 +115,14 @@ public class ProjectServiceTestCase {
     }
 
     @Test
-    public void delete1Project(){
+    public void delete1ProjectTest(){
         projectService.delete(List.of(1L));
         verify(projectRepository).deleteAllById(List.of(1L));
+    }
+
+    @Test
+    public void deleteManyProjectsTest(){
+        projectService.delete(List.of(1L, 3L, 5L));
+        verify(projectRepository).deleteAllById(List.of(1L, 3L, 5L));
     }
 }
