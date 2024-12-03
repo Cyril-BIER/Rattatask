@@ -16,7 +16,7 @@ public class Project {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "project")
+    @OneToMany(cascade = CascadeType.ALL,  mappedBy = "project")
     private List<Task> tasks = new ArrayList<>();
 
     public void addTasks(List<Task> tasks) {
@@ -52,9 +52,5 @@ public class Project {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, tasks);
-    }
-
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
     }
 }
