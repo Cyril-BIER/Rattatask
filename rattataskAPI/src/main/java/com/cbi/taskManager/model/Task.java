@@ -82,4 +82,8 @@ public class Task {
     public void setProject(Project project) {
         this.project = project;
     }
+
+    public void setStatus(TaskStatus taskStatus) {
+        this.status = taskStatus;
+    }
 }
