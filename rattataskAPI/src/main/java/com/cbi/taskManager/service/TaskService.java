@@ -8,23 +8,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class TaskService {
     @Autowired
     TaskRepository taskRepository;
     @Autowired
-    private ProjectRepository projectRepository;
+    ProjectRepository projectRepository;
 
     public void delete(List<Long> ids) {
         List<Task> tasks = taskRepository.findAllById(ids);
-        for(Task task : tasks){
-            Project project = task.getProject();
-            List<Task> filteredTasks = project.getTasks().stream()
-                    .filter(t-> !t.equals(task))
-                    .toList();
-            project.setTasks(filteredTasks);
-            projectRepository.save(project);
-        }
+        Set<Project> projects = tasks.stream()
+                .map(Task::getProject)
+                .peek(project -> project.setTasks(
+                        project.getTasks().stream()
+                                .filter(t->!tasks.contains(t))
+                                .toList()))
+                .collect(Collectors.toSet());
+        projectRepository.saveAll(projects);
     }
 }
