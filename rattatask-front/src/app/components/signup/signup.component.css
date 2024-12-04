@@ -13,3 +13,8 @@ form {
   display: flex;
   justify-content: flex-end;
 }
+
+div{
+  margin-right: 1rem;
+  margin-top: 1rem;
+}

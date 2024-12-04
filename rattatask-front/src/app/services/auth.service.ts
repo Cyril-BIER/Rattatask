@@ -36,13 +36,9 @@ export class AuthService {
     );
   }
 
-  signup(email: string, password: string) : Observable<boolean>{
-    const credentials = {
-      email: email,
-      password: password,
-    };
+  signup(body : {email:string, name:string, lastName: string, password:string}) : Observable<boolean>{
 
-    return this.http.post<any>(`${ENV.apiUrl}/auth/signup`,credentials).pipe(
+    return this.http.post<any>(`${ENV.apiUrl}/auth/signup`,body).pipe(
       map(()=>{
         return true;
       }), catchError((error) => {
