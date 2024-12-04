@@ -1,4 +1,4 @@
 package com.cbi.taskManager.dto;
 
-public record LoginResponse(Long id, String username, String generatedToken, Long expiresIn) {
+public record LoginResponse(Long id, String email,String name,String lastName,  String generatedToken, Long expiresIn) {
 }

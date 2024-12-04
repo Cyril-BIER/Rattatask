@@ -87,4 +87,12 @@ public class User implements UserDetails {
     public Long getId() {
         return this.id;
     }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
 }

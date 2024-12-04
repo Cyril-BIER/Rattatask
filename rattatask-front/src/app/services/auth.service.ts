@@ -22,7 +22,7 @@ export class AuthService {
 
     return this.http.post<any>(`${ENV.apiUrl}/auth/login`, credentials).pipe(
       map((response) => {
-        localStorage.setItem('user', response.username);
+        localStorage.setItem('user', `${response.name}  ${response.lastName}`);
         localStorage.setItem('user_id', response.id);
         localStorage.setItem('token', response.generatedToken);
         localStorage.setItem('tokenExpiresAt', Date.now() + response.expiresIn);

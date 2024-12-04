@@ -44,6 +44,8 @@ public class AuthService {
 
         return new LoginResponse(user.getId(),
                 user.getUsername(),
+                user.getName(),
+                user.getLastName(), 
                 jwtService.generateToken(user),
                 jwtService.getExpirationTime());
     }
