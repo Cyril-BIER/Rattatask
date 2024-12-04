@@ -13,6 +13,7 @@
   <mat-card-footer>
     <div class="button">
       <button [routerLink]="['/project', project.id]" mat-button>Accéder</button>
+      <button (click)="delete()" mat-button>Supprimer</button>
     </div>
   </mat-card-footer>
 

@@ -63,6 +63,22 @@ export class ProjectService {
       );
   }
 
+  deleteProject(ids:number []){
+    let url: string = `${ENV.apiUrl}/api/projects?`;
+    ids.forEach((id) => {
+      url += `id=${id}&`;
+    });
+
+    return this.http.delete<any>(url, {headers: this.headers}).pipe(
+      map((response)=>{
+        return response;
+      }),
+      catchError((error)=>{
+        return error;
+      })
+    )
+  }
+
   postTask(id: number, task: {name:string, description: string}) {
     const body = [
       { name: task.name, description: task.description, usersID: [] },
