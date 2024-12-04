@@ -17,19 +17,25 @@ public class User implements UserDetails {
     private Long id;
     @Column(nullable = false, unique = true)
     private String email;
+    private String name;
+    private String lastName;
     @Column(nullable = false)
     private String password;
 
     public User(){super();}
 
-    public User(String email, String password) {
+    public User(String email,String name, String lastName, String password) {
         this.email = email;
+        this.name = name;
+        this.lastName = lastName;
         this.password = password;
     }
 
-    public User(Long id, String mail, String password) {
+    public User(Long id, String mail,String name, String lastName, String password) {
         this.id = id;
         this.email = mail;
+        this.name = name;
+        this.lastName = lastName;
         this.password = password;
     }
 

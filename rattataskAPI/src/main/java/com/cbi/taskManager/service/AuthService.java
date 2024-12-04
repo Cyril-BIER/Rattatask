@@ -29,7 +29,7 @@ public class AuthService {
     @Transactional
     public User signUp(RegisterUserDTO request) {
         return userRepository.save(
-                new User(request.email(),
+                new User(request.email(), request.name(), request.lastName(),
                         passwordEncoder.encode(request.password()))
         );
     }
