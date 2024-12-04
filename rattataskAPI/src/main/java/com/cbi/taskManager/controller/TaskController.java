@@ -1,6 +1,6 @@
 package com.cbi.taskManager.controller;
 
-import com.cbi.taskManager.dto.UpdateTaskDTO;
+import com.cbi.taskManager.dto.TaskDTO;
 import com.cbi.taskManager.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,7 +31,7 @@ public class TaskController {
 
     @PutMapping
     public ResponseEntity<?> putTask(
-            @RequestBody List<UpdateTaskDTO> dtos
+            @RequestBody List<TaskDTO> dtos
     ){
         try {
             return ResponseEntity.ok(taskService.updateTasks(dtos));

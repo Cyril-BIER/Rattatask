@@ -1,9 +1,10 @@
 package com.cbi.taskManager.controller;
 
 import com.cbi.taskManager.dto.CreateTaskDTO;
-import com.cbi.taskManager.dto.ProjectDTO;
+import com.cbi.taskManager.dto.CreateProjectDTO;
 import com.cbi.taskManager.model.Project;
 import com.cbi.taskManager.model.Task;
+import com.cbi.taskManager.service.ProjectDTO;
 import com.cbi.taskManager.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,12 +20,12 @@ public class ProjectController {
     ProjectService projectService;
 
     @PostMapping
-    public ResponseEntity<Project> postProject(@RequestBody ProjectDTO dto){
+    public ResponseEntity<Project> postProject(@RequestBody CreateProjectDTO dto){
         return ResponseEntity.ok(projectService.createProject(dto));
     }
 
     @GetMapping
-    public ResponseEntity<List<Project>> getProjects(@RequestParam(name = "id", defaultValue ="") List<Long> ids){
+    public ResponseEntity<List<ProjectDTO>> getProjects(@RequestParam(name = "id", defaultValue ="") List<Long> ids){
         return ResponseEntity.ok(projectService.getProjects(ids));
     }
 

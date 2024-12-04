@@ -1,7 +1,7 @@
 package com.cbi.taskManager.service;
 
 import com.cbi.taskManager.dto.CreateTaskDTO;
-import com.cbi.taskManager.dto.ProjectDTO;
+import com.cbi.taskManager.dto.CreateProjectDTO;
 import com.cbi.taskManager.model.Project;
 import com.cbi.taskManager.model.Task;
 import com.cbi.taskManager.model.User;
@@ -23,13 +23,17 @@ public class ProjectService {
     @Autowired
     UserRepository userRepository;
 
-    public Project createProject(ProjectDTO projectDTO) {
-        return projectRepository.save(new Project(projectDTO.name()));
+    public Project createProject(CreateProjectDTO createProjectDTO) {
+        return projectRepository.save(new Project(createProjectDTO.name()));
     }
 
-    public List<Project> getProjects(List<Long> ids) {
-        if(ids.isEmpty()) return projectRepository.findAll();
-        return projectRepository.findAllById(ids);
+    public List<ProjectDTO> getProjects(List<Long> ids) {
+        if(ids.isEmpty()) return projectRepository.findAll().stream()
+                .map(ProjectDTO::new)
+                .toList();
+        return projectRepository.findAllById(ids).stream()
+                .map(ProjectDTO::new)
+                .toList();
     }
 
     @Transactional

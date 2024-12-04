@@ -1,6 +1,6 @@
 package com.cbi.taskManager.service;
 
-import com.cbi.taskManager.dto.UpdateTaskDTO;
+import com.cbi.taskManager.dto.TaskDTO;
 import com.cbi.taskManager.enums.TaskStatus;
 import com.cbi.taskManager.model.Task;
 import com.cbi.taskManager.repository.TaskRepository;
@@ -43,7 +43,7 @@ public class TaskServiceTestCase {
 
     @Test
     public void update1Task(){
-        UpdateTaskDTO dto = new UpdateTaskDTO(1L,"Nouvelle description", TaskStatus.ONGOING, List.of());
+        TaskDTO dto = new TaskDTO(1L,"","Nouvelle description", TaskStatus.ONGOING, List.of());
         Task orginal = new Task(1L, "Nom tâche", "Ancienne description",List.of());
         Task expected = new Task(1L, "Nom tâche", "Nouvelle description",List.of());
         expected.setStatus(TaskStatus.ONGOING);
@@ -56,9 +56,9 @@ public class TaskServiceTestCase {
 
     @Test
     public void updateManyTasks(){
-        List<UpdateTaskDTO> dtos = List.of(
-                new UpdateTaskDTO(1L,"Nouvelle description de tâche 1", TaskStatus.ONGOING, List.of()),
-                new UpdateTaskDTO(2L,"Nouvelle description de tâche 2", TaskStatus.DONE, List.of())
+        List<TaskDTO> dtos = List.of(
+                new TaskDTO(1L,"","Nouvelle description de tâche 1", TaskStatus.ONGOING, List.of()),
+                new TaskDTO(2L,"","Nouvelle description de tâche 2", TaskStatus.DONE, List.of())
         );
 
         List<Task> originals = List.of(

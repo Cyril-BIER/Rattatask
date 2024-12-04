@@ -1,6 +1,6 @@
 package com.cbi.taskManager.service;
 
-import com.cbi.taskManager.dto.UpdateTaskDTO;
+import com.cbi.taskManager.dto.TaskDTO;
 import com.cbi.taskManager.model.Task;
 import com.cbi.taskManager.model.User;
 import com.cbi.taskManager.repository.TaskRepository;
@@ -28,10 +28,10 @@ public class TaskService {
     }
 
     @Transactional
-    public List<Task> updateTasks(List<UpdateTaskDTO> dtos) {
+    public List<Task> updateTasks(List<TaskDTO> dtos) {
         List<Task> tasks = taskRepository.findAllById(
                 dtos.stream()
-                        .mapToLong(UpdateTaskDTO::id)
+                        .mapToLong(TaskDTO::id)
                         .boxed()
                         .toList()
         );
@@ -44,7 +44,7 @@ public class TaskService {
 
         List<Task> updatedTasks = tasks.stream()
                 .peek(task -> {
-                    UpdateTaskDTO dto = dtos.stream()
+                    TaskDTO dto = dtos.stream()
                             .filter(d -> d.id().equals(task.getId()))
                             .findFirst()
                             .orElseThrow(EntityNotFoundException::new);

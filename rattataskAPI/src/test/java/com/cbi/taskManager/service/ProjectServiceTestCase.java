@@ -1,6 +1,6 @@
 package com.cbi.taskManager.service;
 
-import com.cbi.taskManager.dto.ProjectDTO;
+import com.cbi.taskManager.dto.CreateProjectDTO;
 import com.cbi.taskManager.dto.CreateTaskDTO;
 import com.cbi.taskManager.model.Project;
 import com.cbi.taskManager.model.Task;
@@ -34,35 +34,40 @@ public class ProjectServiceTestCase {
 
     @Test
     public void postOneProjectTest(){
-        ProjectDTO projectDTO = new ProjectDTO("My project");
-        projectService.createProject(projectDTO);
+        CreateProjectDTO createProjectDTO = new CreateProjectDTO("My project");
+        projectService.createProject(createProjectDTO);
         verify(projectRepository).save(new Project("My project"));
     }
 
     @Test
     public void getZeroProjectTest(){
         when(projectRepository.findAllById(List.of(1L))).thenReturn(List.of());
-        List<Project> actual = projectService.getProjects(List.of(1L));
+        List<ProjectDTO> actual = projectService.getProjects(List.of(1L));
         assertEquals(List.of(),actual);
     }
 
     @Test
     public void getOneProjectTest(){
-        Project project1 =new Project("Project 1");
+        ProjectDTO expected = new ProjectDTO(null,"Project 1", List.of());
         when(projectRepository.findAllById(List.of(1L))).thenReturn(List.of(
-                project1
+                new Project("Project 1")
         ));
-        List<Project> actual = projectService.getProjects(List.of(1L));
-        assertEquals(List.of(project1),actual);
+        List<ProjectDTO> actual = projectService.getProjects(List.of(1L));
+        assertEquals(List.of(expected),actual);
     }
 
     @Test
     public void getManyProjectTest(){
-        Project project1 =new Project("Project 1");
-        Project project2 =new Project("Project 2");
-        when(projectRepository.findAllById(List.of(1L,2L))).thenReturn(List.of(project1, project2));
-        List<Project> actual = projectService.getProjects(List.of(1L,2L));
-        assertEquals(List.of(project1, project2),actual);
+        List<ProjectDTO> expected = List.of(
+                new ProjectDTO(null,"Project 1", List.of()),
+                new ProjectDTO(null,"Project 2", List.of())
+        );
+        when(projectRepository.findAllById(List.of(1L,2L)))
+                .thenReturn(List.of(
+                        new Project("Project 1"),
+                        new Project("Project 2")));
+        List<ProjectDTO> actual = projectService.getProjects(List.of(1L,2L));
+        assertEquals(expected,actual);
     }
 
     @Test
