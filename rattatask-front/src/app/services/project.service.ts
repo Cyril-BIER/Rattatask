@@ -79,18 +79,13 @@ export class ProjectService {
     )
   }
 
-  postTask(id: number, task: {name:string, description: string}) {
-    const body = [
-      { name: task.name, description: task.description, usersID: [] },
-    ];
-    console.log(id);
+  postTask(id: number, task: {name:string, description: string, usersID: number[]}) {
     return this.http
-      .post<any>(`${ENV.apiUrl}/api/projects/tasks?projectID=${id}`, body, {
+      .post<any>(`${ENV.apiUrl}/api/projects/tasks?projectID=${id}`, [task], {
         headers: this.headers,
       })
       .pipe(
         map((response) => {
-          console.log(response);
           return response;
         }),
         catchError((error) => {
