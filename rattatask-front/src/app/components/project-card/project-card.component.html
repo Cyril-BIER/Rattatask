@@ -4,11 +4,11 @@
       <h1>{{project.name}}</h1>
     </mat-card-title>
     <mat-card-subtitle>
-      <p>XX tâches</p>
+      <p>{{project.tasks.length}} tâches</p>
     </mat-card-subtitle>
-    <p>X tâches à faire</p>
-    <p>Y tâches en cours</p>
-    <p>Z tâches terminées</p>
+    <p class="todo">{{numberOfTodo}} tâches à faire</p>
+    <p class="ongoing">{{numberOfOnGoing}} tâches en cours</p>
+    <p class="done">{{numberOfDone}} tâches terminées</p>
   </mat-card-content>
   <mat-card-footer>
     <div class="button">

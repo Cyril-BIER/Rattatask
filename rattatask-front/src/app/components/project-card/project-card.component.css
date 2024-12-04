@@ -10,3 +10,15 @@
   justify-content: flex-end;
   padding: 1rem;
 }
+
+.todo{
+  color: red;
+}
+
+.ongoing {
+  color: orange;
+}
+
+.done {
+  color: green;
+}
