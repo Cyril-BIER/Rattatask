@@ -9,3 +9,8 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+h1{
+  font-weight: bold;
+  color: indigo;
+}
