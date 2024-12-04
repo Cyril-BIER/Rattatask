@@ -20,7 +20,7 @@
       <mat-label>Personne affectée</mat-label>
       <mat-select formControlName="userIds" multiple>
         <mat-option *ngFor="let user of users" [value]="user.id">
-          {{ user.name }}
+          {{ user.email }}
         </mat-option>
       </mat-select>
     </mat-form-field>

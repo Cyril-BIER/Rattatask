@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 import { catchError, of } from 'rxjs';
+import { UsersService } from '../../services/users.service';
+import { User } from '../../interfaces/User';
 
 @Component({
   selector: 'app-update-task',
@@ -20,7 +22,7 @@ import { catchError, of } from 'rxjs';
     MatButtonModule,
     MatInputModule,
     CommonModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   templateUrl: './update-task.component.html',
   styleUrl: './update-task.component.css',
@@ -28,20 +30,26 @@ import { catchError, of } from 'rxjs';
 export class UpdateTaskComponent {
   task: Task;
   form: FormGroup;
+  status: { id: string; name: string }[] = [
+    { id: 'TODO', name: 'A faire' },
+    { id: 'ONGOING', name: 'En cours' },
+    { id: 'DONE', name: 'Fait' },
+  ];
+  users: User[] = [];
 
   closeDialog() {
     this.dialogRef.close();
   }
   onSubmit() {
-    const updatedTask : Task = {
-      id : this.task.id,
-      name : this.task.name,
-      description : this.form.value.description,
-      status : this.form.value.status,
-      userIds : []
-    }
-    this.taskService.updateTask(updatedTask).subscribe(()=>{
-      catchError((error)=>{
+    const updatedTask: Task = {
+      id: this.task.id,
+      name: this.task.name,
+      description: this.form.value.description,
+      status: this.form.value.status,
+      userIds: this.form.value.userIds,
+    };
+    this.taskService.updateTask(updatedTask).subscribe(() => {
+      catchError((error) => {
         console.error(error);
         return of(false);
       });
@@ -51,27 +59,19 @@ export class UpdateTaskComponent {
 
   constructor(
     private taskService: TasksService,
+    private userService: UsersService,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<UpdateTaskComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Task
   ) {
     this.task = data;
+    this.userService.getUsers().subscribe((response) => {
+      this.users = response;
+    });
     this.form = this.fb.group({
       description: this.task.description,
       status: this.task.status,
-      userIds: [[]],
+      userIds: [this.task.userIds],
     });
   }
-
-  status: { id: string; name: string }[] = [
-    { id: 'TODO', name: 'A faire' },
-    { id: 'ONGOING', name: 'En cours' },
-    { id: 'DONE', name: 'Fait' },
-  ];
-
-  users: { id: number; name: string }[] = [
-    { id: 1, name: 'Alice' },
-    { id: 2, name: 'Bob' },
-    { id: 3, name: 'Charlie' },
-  ];
 }
