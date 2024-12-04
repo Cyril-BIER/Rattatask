@@ -3,6 +3,8 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
@@ -13,12 +15,19 @@ import { CommonModule } from '@angular/common';
     SignupComponent,
     CommonModule,
     RouterLink,
+    MatButtonModule,
+    MatIconModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'Rattatask';
+
+  disconnect() {
+    localStorage.clear();
+    location.reload();
+  }
 
   private isTokenExpired(): boolean {
     const tokenExpiresAt = localStorage.getItem('tokenExpiresAt');
