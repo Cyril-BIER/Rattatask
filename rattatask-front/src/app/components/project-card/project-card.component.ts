@@ -4,11 +4,12 @@ import { MatCardModule } from '@angular/material/card';
 import { Project } from '../../interfaces/Project';
 import { RouterLink } from '@angular/router';
 import { ProjectService } from '../../services/project.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-project-card',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, RouterLink],
+  imports: [MatCardModule, MatButtonModule, RouterLink, MatIconModule],
   templateUrl: './project-card.component.html',
   styleUrl: './project-card.component.css',
 })

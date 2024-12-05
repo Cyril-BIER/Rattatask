@@ -2,7 +2,11 @@
   display: flex;
   justify-content: center;
   margin: 1rem;
-  padding: 1rem;
+  padding: 0.5rem;
+}
+
+:host:hover{
+
 }
 
 .button {
@@ -12,11 +16,18 @@
 }
 
 button{
-  margin-right: 1rem;
+  margin-right: 0.25rem;
+  height: 3rem;
+  width: 3rem;
 }
 
 h1{
-  color: indigo;
+  color: blueviolet;
+  font-family: Impact;
+}
+
+.total{
+  font-weight: bold;
 }
 
 .todo{
@@ -32,6 +43,11 @@ h1{
 }
 
 .mdc-card {
-  background-color: rgba(134, 30, 207, 0.329);
-  color: white;
+  background-color: transparent;
+  border: 3px solid blueviolet;
+  border-radius: 15px;
+}
+
+.mat-mdc-card-content:hover{
+  cursor: pointer;
 }

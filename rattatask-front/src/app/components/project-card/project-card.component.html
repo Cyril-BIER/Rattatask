@@ -1,10 +1,10 @@
-<mat-card appearance="outlined">
-  <mat-card-content>
+<mat-card   appearance="outlined">
+  <mat-card-content [routerLink]="['/project', project.id]">
     <mat-card-title>
-      <h1>{{project.name}}</h1>
+      <h1 >{{project.name}}</h1>
     </mat-card-title>
     <mat-card-subtitle>
-      <p>{{project.tasks.length}} tâches</p>
+      <p class="total">{{project.tasks.length}} tâches au total</p>
     </mat-card-subtitle>
     <p class="todo">{{numberOfTodo}} tâches à faire</p>
     <p class="ongoing">{{numberOfOnGoing}} tâches en cours</p>
@@ -12,8 +12,9 @@
   </mat-card-content>
   <mat-card-footer>
     <div class="button">
-      <button [routerLink]="['/project', project.id]" mat-raised-button color="primary">Accéder</button>
-      <button (click)="delete()" mat-raised-button color="primary">Supprimer</button>
+      <button (click)="delete()" mat-fab color="primary">
+        <mat-icon>delete</mat-icon>
+      </button>
     </div>
   </mat-card-footer>
 
