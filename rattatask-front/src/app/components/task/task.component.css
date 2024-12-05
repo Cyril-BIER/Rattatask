@@ -5,6 +5,10 @@
   margin-right: 1rem;
 }
 
+h1{
+  font-family: Impact;
+}
+
 .button {
   display: flex;
   float: right;
@@ -13,14 +17,19 @@
 
 button{
   margin: 0.25rem;
+  height: 3rem;
+  width: 3rem;
+  color: rgb(236, 226, 176);
 }
 
 .mdc-card{
   width : 100%;
-  background-color: rgba(134, 30, 207, 0.329);
-  color: white;
+  background-color: rgba(219, 200, 113, 0.342);
+  color: blueviolet;
+  border: 3px solid blueviolet;
+  border-radius: 15px;
 }
 
 p{
-  color: white;
+  color: blueviolet;
 }

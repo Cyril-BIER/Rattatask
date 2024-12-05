@@ -7,12 +7,12 @@
 
 .board-column {
   flex: 1;
-  background-color:rgba(180, 139, 204, 0.479);
-  color: white;
-  border: 1px solid #ddd;
+  background-color: rgba(219, 200, 113, 0.164);
+  color: blueviolet;
+  border: 3px solid blueviolet;
   border-radius: 8px;
   padding: 10px;
-  min-height: 300px;
+  height: fit-content;
 }
 
 .tasks {
@@ -21,9 +21,15 @@
 }
 
 h1{
+  font-family: Impact;
   display: flex;
   justify-content: center;
   color: blueviolet;
+  font-weight: bold;
+}
+
+h2{
+  font-family: Impact;
   font-weight: bold;
 }
 
