@@ -11,8 +11,12 @@
   </mat-card-content>
   <mat-card-footer>
     <div class="button">
-      <button type="submit" (click)="openUpdateTaskDialog()" mat-raised-button color="primary">Modifier</button>
-      <button type="submit" mat-raised-button color="primary" (click)="deleteTask()">Supprimer</button>
+      <button type="submit" (click)="openUpdateTaskDialog()" mat-fab color="primary">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button type="submit" mat-fab color="primary" (click)="deleteTask()">
+        <mat-icon>delete</mat-icon>
+      </button>
     </div>
   </mat-card-footer>
 

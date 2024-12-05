@@ -4,8 +4,21 @@
 }
 
 .appLogo{
-  margin: 1rem;
-  height: 8rem;
+  display: flex;
+  align-items: center;
+}
+
+.appLogo img{
+  height: 4rem;
+  margin-right: 0.5rem;
+}
+
+.rattatask_title {
+  font-family: Impact;
+  font-weight: bold;
+  font-size: 3rem;
+  color: blueviolet;
+  margin-bottom: 0px;
 }
 
 .appLogo:hover{
@@ -19,7 +32,5 @@
   padding: 1rem;
 }
 
-.disconnectBtn{
-  background-color: blueviolet;
-  color: white;
-}
+
+

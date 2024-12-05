@@ -8,11 +8,12 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateTaskComponent } from '../create-task/create-task.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-task-board',
   standalone: true,
-  imports: [CommonModule, TaskComponent, MatButtonModule],
+  imports: [CommonModule, TaskComponent, MatButtonModule, MatIconModule],
   templateUrl: './task-board.component.html',
   styleUrl: './task-board.component.css',
 })
@@ -35,7 +36,7 @@ export class TaskBoardComponent implements OnInit {
   openTaskCreatorDialog(): void {
     const dialogRef = this.dialog.open(CreateTaskComponent, {
       width: 'fit-content',
-      data : {  projectID : this.projectID}
+      data: { projectID: this.projectID },
     });
 
     dialogRef.afterClosed().subscribe((result) => {

@@ -1,7 +1,10 @@
 <header>
   <div class="navbar">
-    <img [routerLink]="['/']" class="appLogo" src="assets/Rattatask_logo.png" alt="">
-    <button (click)="disconnect()" type="submit" mat-fab *ngIf="isAuthenticated" class="disconnectBtn">
+    <div class="appLogo" [routerLink]="['/']">
+      <img  src="assets/Rattatask_logo.png" alt="">
+      <h1 class="rattatask_title">Rattatask</h1>
+    </div>
+    <button (click)="disconnect()" type="submit" mat-fab *ngIf="isAuthenticated" color="primary">
       <mat-icon>logout</mat-icon>
     </button>
   </div>

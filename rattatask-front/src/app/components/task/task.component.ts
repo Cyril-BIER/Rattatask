@@ -5,11 +5,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { TasksService } from '../../services/tasks.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UpdateTaskComponent } from '../update-task/update-task.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule],
+  imports: [MatCardModule, MatButtonModule, MatIconModule],
   templateUrl: './task.component.html',
   styleUrl: './task.component.css',
 })
