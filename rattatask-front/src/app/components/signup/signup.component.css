@@ -1,7 +1,6 @@
 :host {
   display: flex;
   justify-content: center;
-  margin: 100px 0px;
   margin-left: 1rem;
 }
 
@@ -12,4 +11,9 @@ form {
 .button {
   display: flex;
   justify-content: flex-end;
+}
+
+div{
+  margin-right: 1rem;
+  margin-top: 1rem;
 }

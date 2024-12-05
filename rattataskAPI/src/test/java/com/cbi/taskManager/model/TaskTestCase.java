@@ -19,7 +19,7 @@ public class TaskTestCase {
 
     @Test
     public void constructor1UserTest(){
-        List<User> users = List.of(new User("mail", "password"));
+        List<User> users = List.of(new User("mail","name", "lastname", "password"));
         Task task = new Task("Conception", "Concevoir le jeu de données", users);
         assertEquals(users, task.getUsers());
     }
@@ -27,9 +27,9 @@ public class TaskTestCase {
     @Test
     public void constructorManyUserTest(){
         List<User> users = List.of(
-                new User("mail1", "password"),
-                new User("mail2", "password"),
-                new User("mail3", "password")
+                new User("mail1","name", "lastname", "password"),
+                new User("mail2", "name", "lastname","password"),
+                new User("mail3","name", "lastname", "password")
                 );
         Task task = new Task("Conception", "Concevoir le jeu de données", users);
         assertEquals(users, task.getUsers());

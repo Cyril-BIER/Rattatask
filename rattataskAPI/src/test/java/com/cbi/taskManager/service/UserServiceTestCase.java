@@ -27,7 +27,7 @@ public class UserServiceTestCase {
     public void get1UserTest(){
         List<UserDTO> expected =List.of( new UserDTO(1L, "bob@mail.com"));
         when(userRepository.findAllById(List.of(1L))).thenReturn(List.of(
-                new User(1L, "bob@mail.com", "password")
+                new User(1L, "bob@mail.com","name", "lastname", "password")
         ));
         assertEquals(expected, userService.getUsers(List.of(1L)));
     }
@@ -41,9 +41,9 @@ public class UserServiceTestCase {
 
         );
         when(userRepository.findAllById(List.of(1L,3L, 5L))).thenReturn(List.of(
-                new User(1L, "bob@mail.com", "password"),
-                new User(3L, "alice@mail.com", "password"),
-                new User(5L, "eve@mail.com", "password")
+                new User(1L, "bob@mail.com","name", "lastname", "password"),
+                new User(3L, "alice@mail.com", "name", "lastname","password"),
+                new User(5L, "eve@mail.com","name", "lastname", "password")
 
         ));
         assertEquals(expected, userService.getUsers(List.of(1L, 3L, 5L)));
@@ -58,9 +58,9 @@ public class UserServiceTestCase {
 
         );
         when(userRepository.findAll()).thenReturn(List.of(
-                new User(1L, "bob@mail.com", "password"),
-                new User(2L, "alice@mail.com", "password"),
-                new User(3L, "eve@mail.com", "password")
+                new User(1L, "bob@mail.com", "name", "lastname","password"),
+                new User(2L, "alice@mail.com","name", "lastname", "password"),
+                new User(3L, "eve@mail.com", "name", "lastname","password")
 
         ));
         List<UserDTO> actual = userService.getUsers(List.of());

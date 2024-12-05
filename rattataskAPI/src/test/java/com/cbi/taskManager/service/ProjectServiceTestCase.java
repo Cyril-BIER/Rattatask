@@ -78,7 +78,7 @@ public class ProjectServiceTestCase {
 
     @Test
     public void add1TaskTest(){
-        List<User> users = List.of( new User(1L, "mail", "password"));
+        List<User> users = List.of( new User(1L, "mail","name", "lastname", "password"));
         List<Task> tasks = List.of(
                 new Task("Nom tâche", "Description", users)
         );
@@ -94,9 +94,9 @@ public class ProjectServiceTestCase {
 
     @Test
     public void addManyTasksTest(){
-        User user1 = new User(1L, "mail", "password");
-        User user2 = new User(2L, "mail2", "password");
-        User user3 = new User(3L, "mail3", "password");
+        User user1 = new User(1L, "mail","name", "lastname", "password");
+        User user2 = new User(2L, "mail2","name", "lastname", "password");
+        User user3 = new User(3L, "mail3","name", "lastname", "password");
 
         List<Task> tasks = List.of(
                 new Task("Tâche1", "Description", List.of(user1,user2,user3)),

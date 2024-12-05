@@ -39,21 +39,21 @@ public class AuthServiceTest {
 
     @Test
     public void createOneUserTest(){
-        RegisterUserDTO request = new RegisterUserDTO("email","password");
+        RegisterUserDTO request = new RegisterUserDTO("email","name", "lastname","password");
         when(passwordEncoder.encode("password")).thenReturn("encodedPassword");
         service.signUp(request);
-        verify(userRepository).save(new User("email","encodedPassword"));
+        verify(userRepository).save(new User("email","name", "lastname","encodedPassword"));
     }
 
     @Test
     public void loginTest(){
         LoginUserDTO loginRequest = new LoginUserDTO("email", "password");
         LoginResponse expected = new LoginResponse(null,
-                "email",
+                "email","name", "lastname",
                 "generatedToken",
                 3600000L);
 
-        User user = new User("email", "password");
+        User user = new User("email","name", "lastname", "password");
         when(userRepository.findByEmail("email")).thenReturn(Optional.of(user));
         when(jwtService.generateToken(user)).thenReturn("generatedToken");
         when(jwtService.getExpirationTime()).thenReturn(3600000L);

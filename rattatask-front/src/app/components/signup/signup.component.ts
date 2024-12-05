@@ -26,6 +26,8 @@ import { catchError, of } from 'rxjs';
 export class SignupComponent {
   form: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
+    name : new FormControl(''),
+    lastName : new FormControl(''),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(6),
@@ -37,11 +39,16 @@ export class SignupComponent {
 
   onSubmit(): void {
     if (this.form.valid) {
-      const { email, password, confirmPassword } = this.form.value;
+      const { email,name, lastName, password, confirmPassword } = this.form.value;
 
       if (password === confirmPassword) {
         this.authService
-          .signup(email, password)
+          .signup({
+            email : email,
+            name : name,
+            lastName : lastName,
+            password : password
+          })
           .pipe(
             catchError((error) => {
               console.log(error);

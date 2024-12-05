@@ -11,6 +11,14 @@
   padding: 1rem;
 }
 
+button{
+  margin-right: 1rem;
+}
+
+h1{
+  color: indigo;
+}
+
 .todo{
   color: red;
 }
@@ -21,4 +29,9 @@
 
 .done {
   color: green;
+}
+
+.mdc-card {
+  background-color: rgba(134, 30, 207, 0.329);
+  color: white;
 }

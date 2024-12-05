@@ -29,7 +29,7 @@ public class AuthService {
     @Transactional
     public User signUp(RegisterUserDTO request) {
         return userRepository.save(
-                new User(request.email(),
+                new User(request.email(), request.name(), request.lastName(),
                         passwordEncoder.encode(request.password()))
         );
     }
@@ -44,6 +44,8 @@ public class AuthService {
 
         return new LoginResponse(user.getId(),
                 user.getUsername(),
+                user.getName(),
+                user.getLastName(), 
                 jwtService.generateToken(user),
                 jwtService.getExpirationTime());
     }

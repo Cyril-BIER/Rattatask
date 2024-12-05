@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class UserTestCase {
     @Test
     public void userConstructorTest(){
-        User user = new User("email","password");
+        User user = new User("email","name","lastname","password");
         assertEquals("email", user.getUsername());
         assertEquals("password", user.getPassword());
     }
@@ -15,8 +15,8 @@ class UserTestCase {
     @Test
     public void compareUserTest(){
         assertEquals(
-                new User("user","pass"),
-                new User("user", "pass")
+                new User("user","name", "lastname","pass"),
+                new User("user","name", "lastname", "pass")
         );
     }
 }

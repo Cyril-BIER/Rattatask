@@ -22,7 +22,7 @@ export class AuthService {
 
     return this.http.post<any>(`${ENV.apiUrl}/auth/login`, credentials).pipe(
       map((response) => {
-        localStorage.setItem('user', response.username);
+        localStorage.setItem('user', `${response.name}  ${response.lastName}`);
         localStorage.setItem('user_id', response.id);
         localStorage.setItem('token', response.generatedToken);
         localStorage.setItem('tokenExpiresAt', Date.now() + response.expiresIn);
@@ -36,13 +36,9 @@ export class AuthService {
     );
   }
 
-  signup(email: string, password: string) : Observable<boolean>{
-    const credentials = {
-      email: email,
-      password: password,
-    };
+  signup(body : {email:string, name:string, lastName: string, password:string}) : Observable<boolean>{
 
-    return this.http.post<any>(`${ENV.apiUrl}/auth/signup`,credentials).pipe(
+    return this.http.post<any>(`${ENV.apiUrl}/auth/signup`,body).pipe(
       map(()=>{
         return true;
       }), catchError((error) => {
