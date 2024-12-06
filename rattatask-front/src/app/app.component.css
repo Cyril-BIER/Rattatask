@@ -31,3 +31,26 @@
   align-items: center;
   padding: 1rem;
 }
+
+
+.sidenav-container {
+  height: 100vh;
+}
+
+.sidenav {
+  width: 250px;
+}
+
+.menu-button {
+  display: none;
+}
+
+
+.navItem{
+  display: flex;
+  align-items: center;
+}
+
+.mat-icon{
+  margin-right: 1rem;
+}
